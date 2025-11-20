@@ -6,7 +6,7 @@ pipeline {
     }
     
     tools {
-        jdk 'JAVA_HOME'
+        jdk 'jdk17'
         maven 'maven3'
     }
     
@@ -52,4 +52,5 @@ pipeline {
             echo "======pipeline execution failed======"
         }
     }
+
 }
