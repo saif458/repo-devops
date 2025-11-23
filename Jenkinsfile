@@ -10,10 +10,7 @@ pipeline {
         maven 'maven3'
     }
     
-    options {
-        timeout(time: 1, unit: 'HOURS')
-    }
-    
+   
     environment {
         APP_ENV = "DEV"
     }
@@ -54,4 +51,5 @@ pipeline {
     }
 
 }
+
 
