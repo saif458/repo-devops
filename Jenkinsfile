@@ -1,9 +1,8 @@
 pipeline {
     agent any
     
-    triggers {
-        githubPush()
-    }
+    
+    
     tools {
         jdk 'jdk17'
         maven 'maven3'
@@ -50,6 +49,7 @@ pipeline {
     }
 
 }
+
 
 
 
