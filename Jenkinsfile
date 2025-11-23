@@ -1,9 +1,6 @@
 pipeline {
     agent any
     
-    triggers {
-        cron('H/5 * * * *')  // Toutes les 5 minutes
-    }
     
     tools {
         jdk 'jdk17'
@@ -51,5 +48,6 @@ pipeline {
     }
 
 }
+
 
 
