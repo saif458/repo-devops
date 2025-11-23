@@ -14,12 +14,7 @@ pipeline {
     }
     
     stages {
-        stage('Code Checkout') {
-            steps {
-                echo "=====Checking out code from Git====="
-                checkout scm  // Utilise checkout scm au lieu de git
-            }
-        }
+        
         
         stage('Build Package') {
             steps {
@@ -49,6 +44,7 @@ pipeline {
     }
 
 }
+
 
 
 
