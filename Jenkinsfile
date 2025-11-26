@@ -1,49 +1,36 @@
 pipeline {
     agent any
-    
-    
-    
-    tools {
+        tools {
         jdk 'jdk17'
         maven 'maven3'
     }
     
-   
-    environment {
-        APP_ENV = "DEV"
-    }
-    
+
     stages {
-        
-        
-        stage('Build Package') {
+        stage('Checkout Code') {
             steps {
-                echo "=====Building Spring Boot application====="
+               git 'https://github.com/saif458/repo-devops.git'
+            }
+        }
+        
+         stage('Build Application') {
+            steps {
+            
                 sh 'mvn clean package -DskipTests'
             }
         }
-        
-        stage('Archive Artifacts') {
+        stage('Save Results') {
             steps {
-                echo "=====Archiving JAR file====="
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+               
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+                
+           
+                echo ' Build terminé avec succès!'
             }
         }
     }
-    
-    post {
-        always {
-            echo "======always======"
-        }
-        success {
-            echo "=====pipeline executed successfully ====="
-        }
-        failure {
-            echo "======pipeline execution failed======"
-        }
-    }
-
 }
+
 
 
 
