@@ -18,6 +18,13 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+
+         stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t saif458/my-spring-app:1.0 .'
+            }
+        }
+        
         stage('Save Results') {
             steps {
                
@@ -29,6 +36,7 @@ pipeline {
         }
     }
 }
+
 
 
 
