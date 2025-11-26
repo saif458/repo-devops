@@ -5,7 +5,6 @@ pipeline {
         maven 'maven3'
     }
     
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -30,6 +29,7 @@ pipeline {
         }
     }
 }
+
 
 
 
