@@ -30,7 +30,7 @@ pipeline {
        stage('Push to Docker Hub') {
             steps {
                 // Using the credentials 'dockerhub-token' set in Jenkins
-                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'TOKEN')]) {
+                withCredentials([string(credentialsId: 'Dockerhub-token', variable: 'TOKEN')]) {
                     // Login to Docker Hub using the token
                     sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
                     // Push the built Docker image to Docker Hub
@@ -50,6 +50,7 @@ pipeline {
         }
     }
 }
+
 
 
 
