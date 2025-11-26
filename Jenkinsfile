@@ -27,13 +27,15 @@ pipeline {
 
 
 
-        stage('Push to Docker Hub') {
+       stage('Push to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'ddde5624-1688-4cac-b0ea-9a68315efe88', variable: 'TOKEN')]) {
-    sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
-    sh 'docker push saif458/my-spring-app:1.0'
-}
-
+                // Using the credentials 'dockerhub-token' set in Jenkins
+                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'TOKEN')]) {
+                    // Login to Docker Hub using the token
+                    sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
+                    // Push the built Docker image to Docker Hub
+                    sh 'docker push saif458/my-spring-app:1.0'
+                }
             }
         }
         
