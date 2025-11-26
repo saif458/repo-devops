@@ -24,6 +24,17 @@ pipeline {
                 sh 'docker build -t saif458/my-spring-app:1.0 .'
             }
         }
+
+
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'TOKEN')]) {
+                    sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
+                    sh 'docker push saif458/my-spring-app:1.0'
+                }
+            }
+        }
         
         stage('Save Results') {
             steps {
@@ -36,6 +47,7 @@ pipeline {
         }
     }
 }
+
 
 
 
