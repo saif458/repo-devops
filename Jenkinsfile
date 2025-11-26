@@ -29,10 +29,11 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'TOKEN')]) {
-                    sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
-                    sh 'docker push saif458/my-spring-app:1.0'
-                }
+                withCredentials([string(credentialsId: 'ddde5624-1688-4cac-b0ea-9a68315efe88', variable: 'TOKEN')]) {
+    sh 'echo $TOKEN | docker login -u saif458 --password-stdin'
+    sh 'docker push saif458/my-spring-app:1.0'
+}
+
             }
         }
         
@@ -47,6 +48,7 @@ pipeline {
         }
     }
 }
+
 
 
 
