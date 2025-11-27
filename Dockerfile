@@ -1,4 +1,4 @@
-# 1) Image Java pour exécuter l'app
+
 FROM eclipse-temurin:17-jdk-alpine
 
 # 2) Répertoire de travail dans le conteneur
