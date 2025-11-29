@@ -15,7 +15,7 @@ pipeline {
          stage('Build Application') {
             steps {
             
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package'
             }
         }
 
@@ -47,6 +47,7 @@ pipeline {
         }
     }
 }
+
 
 
 
