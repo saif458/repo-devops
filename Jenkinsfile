@@ -28,7 +28,7 @@ pipeline {
 
 
 
-       stage('Push to Docker Hub') {
+        stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'dockerhub-token', variable: 'TOKEN')]) {
                     sh '''
@@ -50,6 +50,7 @@ pipeline {
         }
     }
 }
+
 
 
 
