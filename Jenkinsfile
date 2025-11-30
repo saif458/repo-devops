@@ -59,17 +59,10 @@ stage('SonarQube Analysis') {
 
 
         
-        stage('Save Results') {
-            steps {
-               
-                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
-                
-           
-                echo ' Build terminé avec succès!'
-            }
-        }
+        
     }
 }
+
 
 
 
