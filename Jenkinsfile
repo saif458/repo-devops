@@ -20,6 +20,24 @@ pipeline {
             }
         }
 
+stage('SonarQube Analysis') {
+            steps {
+                // Utilisation du token stocké dans Jenkins
+                withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
+                    sh '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=student-management \
+                        -Dsonar.host.url=http://192.168.159.129:9000 \
+                        -Dsonar.login=$SONAR_TOKEN
+                    '''
+                }
+            }
+        }
+
+
+
+        
+
          stage('Build Docker Image') {
             steps {
                 sh 'docker build -t saif4584851/my-spring-app:1.0 .'
@@ -52,6 +70,7 @@ pipeline {
         }
     }
 }
+
 
 
 
