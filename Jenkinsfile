@@ -22,7 +22,6 @@ pipeline {
 
 stage('SonarQube Analysis') {
             steps {
-                // Utilisation du token stocké dans Jenkins
                 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                     sh '''
                         mvn sonar:sonar \
@@ -62,6 +61,7 @@ stage('SonarQube Analysis') {
         
     }
 }
+
 
 
 
