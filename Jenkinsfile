@@ -28,7 +28,7 @@ stage('SonarQube Analysis') {
                     sh '''
                         mvn sonar:sonar \
                         -Dsonar.projectKey=student-management \
-                        --Dsonar.host.url=http://localhost:9000
+                        -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=$SONAR_TOKEN
                     '''
                 }
@@ -63,6 +63,7 @@ stage('SonarQube Analysis') {
         
     }
 }
+
 
 
 
