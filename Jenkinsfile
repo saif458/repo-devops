@@ -16,6 +16,8 @@ pipeline {
             steps {
             
                 sh 'mvn clean package'
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+
 
             }
         }
@@ -61,6 +63,7 @@ stage('SonarQube Analysis') {
         
     }
 }
+
 
 
 
