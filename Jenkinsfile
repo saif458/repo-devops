@@ -59,10 +59,49 @@ stage('SonarQube Analysis') {
 }
 
 
+
+
+         stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    # 1. Mettre à jour l'image Docker dans le fichier YAML
+                    sed -i 's|image: .*|image: saif4584851/my-spring-app:1.0|' spring-deployment.yaml
+                    
+                    # 2. Déployer sur Kubernetes
+                    kubectl apply -f mysql-pv-pvc.yaml -n devops
+                    kubectl apply -f mysql-deployment.yaml -n devops
+                    kubectl apply -f spring-config-secret.yaml -n devops
+                    kubectl apply -f spring-deployment.yaml -n devops
+                    
+                    # 3. Vérifier le déploiement
+                    echo "Déploiement terminé !"
+                '''
+            }
+        }
+        
+        // ⭐ AJOUTE CE STAGE : Vérification
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    # Attendre que les pods démarrent
+                    sleep 30
+                    
+                    # Vérifier l'état
+                    kubectl get pods -n devops
+                    kubectl get services -n devops
+                    
+                    echo "Application déployée avec succès !"
+                    echo "Accès: http://$(minikube ip 2>/dev/null || echo "192.168.49.2"):30080/student/"
+                '''
+            }
+        }
+
+
         
         
     }
 }
+
 
 
 
