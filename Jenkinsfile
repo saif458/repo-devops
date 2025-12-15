@@ -79,28 +79,14 @@ stage('SonarQube Analysis') {
             }
         }
         
-        // ⭐ AJOUTE CE STAGE : Vérification
-        stage('Verify Deployment') {
-            steps {
-                sh '''
-                    # Attendre que les pods démarrent
-                    sleep 30
-                    
-                    # Vérifier l'état
-                    kubectl get pods -n devops
-                    kubectl get services -n devops
-                    
-                    echo "Application déployée avec succès !"
-                    echo "Accès: http://$(minikube ip 2>/dev/null || echo "192.168.49.2"):30080/student/"
-                '''
-            }
-        }
+        
 
 
         
         
     }
 }
+
 
 
 
